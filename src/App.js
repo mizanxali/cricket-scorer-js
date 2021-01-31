@@ -1,5 +1,4 @@
 import { Route } from 'react-router'
-import { Link } from 'react-router-dom'
 import './App.css'
 import Homepage from './components/Homepage/Homepage'
 import NavigationBar from './components/NavigationBar/NavigationBar'

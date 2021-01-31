@@ -4,14 +4,16 @@ import './index.css'
 import App from './App'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import reducer from './store/reducers/reducer'
+import reducer from './store/reducer'
 import { BrowserRouter } from 'react-router-dom'
 
+const totalOvers = prompt('Enter number of overs.')
 const openingStriker = prompt('Enter opening batsman name (striker).')
 const openingNonStriker = prompt('Enter opening batsman name (non-striker).')
 const openingBowler = prompt('Enter opening bowler name.')
 
 const initialState = {
+  totalBalls: totalOvers*6,
   ballByBall: [],
   score: 0,
   wickets: 0,

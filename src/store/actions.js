@@ -1,0 +1,2 @@
+export const RUNS_SCORED = 'RUNS_SCORED'
+export const WICKET_TAKEN = 'WICKET_TAKEN'

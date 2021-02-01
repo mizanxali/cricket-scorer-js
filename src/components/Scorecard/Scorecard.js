@@ -39,7 +39,7 @@ class Scorecard extends Component {
                         </TableRow>
                         {this.props.battingTeam.map((batsman) => {
                             return(
-                                <TableRow>
+                                <TableRow key={batsman.name}>
                                     <TableCell align='center' style={{color: '#fff'}}>{batsman.name}</TableCell>
                                     <TableCell align='center' style={{color: '#fff'}}>{batsman.runsScored}</TableCell>
                                     <TableCell align='center' style={{color: '#fff'}}>{batsman.ballsFaced}</TableCell>
@@ -73,7 +73,7 @@ class Scorecard extends Component {
                         </TableRow>
                         {this.props.bowlingTeam.map((bowler) => {
                             return(
-                                <TableRow>
+                                <TableRow key={bowler.name}>
                                     <TableCell align='center' style={{color: '#fff'}}>{bowler.name}</TableCell>
                                     <TableCell align='center' style={{color: '#fff'}}>{Math.floor(bowler.ballsBowled/6)}.{bowler.ballsBowled%6}</TableCell>
                                     <TableCell align='center' style={{color: '#fff'}}>{bowler.runsConceded}</TableCell>

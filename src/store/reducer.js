@@ -35,8 +35,8 @@ const reducer = (state, action) => {
             //check for over-up - if true, push over-up bowler to bowlingTeam array, then reset updatedBowler object
             if(((state.balls + 1) % 6) === 0) {
                 upBowler = {...updatedBowler}
-                const newBatsmanName = prompt('Over up! Enter new bowler name.')
-                updatedBowler.name = newBatsmanName
+                const newBowlerName = prompt('Over up! Enter new bowler name.')
+                updatedBowler.name = newBowlerName
                 updatedBowler.ballsBowled = 0
                 updatedBowler.runsConceded = 0
                 updatedBowler.wicketsTaken = 0
@@ -102,8 +102,8 @@ const reducer = (state, action) => {
             //check for over-up - if true, push over-up bowler to bowlingTeam array, then reset updatedBowler object
             if(((state.balls + 1) % 6) === 0) {
                 upBowler = {...updatedBowler}
-                const newBatsmanName = prompt('Over up! Enter new bowler name.')
-                updatedBowler.name = newBatsmanName
+                const newBowlerName = prompt('Over up! Enter new bowler name.')
+                updatedBowler.name = newBowlerName
                 updatedBowler.ballsBowled = 0
                 updatedBowler.runsConceded = 0
                 updatedBowler.wicketsTaken = 0

@@ -13,8 +13,8 @@ class LiveScore extends Component {
                     <CardContent>
                         <Typography variant='h4' style={{fontWeight: 'bold'}}>{this.props.score}-{this.props.wickets} ({Math.floor(this.props.balls/6)}.{this.props.balls%6})</Typography>
                         <br />
-                        <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{this.props.batsman1.name} : {this.props.batsman1.runsScored}({this.props.batsman1.ballsFaced}) {this.props.batsman1.onStrike ? <span>*</span> : null} </Typography>
-                        <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{this.props.batsman2.name} : {this.props.batsman2.runsScored}({this.props.batsman2.ballsFaced}) {this.props.batsman2.onStrike ? <span>*</span> : null} </Typography>
+                        <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{this.props.batsman1.name} : {this.props.batsman1.runsScored}({this.props.batsman1.ballsFaced}) {this.props.batsman1.onStrike && this.props.totalWickets !== this.props.wickets ? <span>*</span> : null} </Typography>
+                        <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{this.props.batsman2.name} : {this.props.batsman2.runsScored}({this.props.batsman2.ballsFaced}) {this.props.batsman2.onStrike && this.props.totalWickets !== this.props.wickets ? <span>*</span> : null} </Typography>
                         <br />
                         <Typography variant='h6'><SportsBaseballRoundedIcon style={{marginRight: '12px'}} />{this.props.bowler.name} : {this.props.bowler.wicketsTaken}/{this.props.bowler.runsConceded} ({Math.floor(this.props.bowler.ballsBowled/6)}.{this.props.bowler.ballsBowled%6})</Typography>
                     </CardContent>
@@ -30,6 +30,7 @@ class LiveScore extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        totalWickets: state.totalWickets,
         ballByBall: state.ballByBall,
         score: state.score,
         wickets: state.wickets,

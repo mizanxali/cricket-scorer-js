@@ -6,15 +6,15 @@ import { Button, ButtonGroup } from '@material-ui/core'
 const ScoreButtons = (props) => {
     return (
         <div className='ScoreButtons' style={{margin: '30px auto'}}>
-            {props.balls === props.totalBalls ? <h3>INNINGS OVER!</h3> : null}
+            {(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) ? <h3>INNINGS OVER!</h3> : null}
             <ButtonGroup>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(0)}>0</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(1)}>1</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(2)}>2</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(3)}>3</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(4)}>4</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(6)}>6</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onWicketTaken()}>W</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets)} onClick={() => props.onRunsScored(0)}>0</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets)} onClick={() => props.onRunsScored(1)}>1</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets)} onClick={() => props.onRunsScored(2)}>2</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets)} onClick={() => props.onRunsScored(3)}>3</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets)} onClick={() => props.onRunsScored(4)}>4</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets)} onClick={() => props.onRunsScored(6)}>6</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets)} onClick={() => props.onWicketTaken()}>W</Button>
             </ButtonGroup>
         </div>
     )
@@ -22,7 +22,9 @@ const ScoreButtons = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        totalWickets: state.totalWickets,
         totalBalls: state.totalBalls,
+        wickets: state.wickets,
         balls: state.balls
     }
 }

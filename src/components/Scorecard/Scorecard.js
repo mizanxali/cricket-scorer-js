@@ -35,22 +35,26 @@ class Scorecard extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.name}*</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.runsScored}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.ballsFaced}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.foursHit}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.sixesHit}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{((this.props.batsman1.runsScored/this.props.batsman1.ballsFaced)*100).toFixed(2)}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.name}*</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.runsScored}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.ballsFaced}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.foursHit}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.sixesHit}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{((this.props.batsman2.runsScored/this.props.batsman2.ballsFaced)*100).toFixed(2)}</TableCell>
-                        </TableRow>
+                        {this.props.batsman1.onStrike && this.props.totalWickets === this.props.wickets ? null :
+                            <TableRow>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.name}<span>*</span></TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.runsScored}</TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.ballsFaced}</TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.foursHit}</TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman1.sixesHit}</TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{((this.props.batsman1.runsScored/this.props.batsman1.ballsFaced)*100).toFixed(2)}</TableCell>
+                            </TableRow>
+                        }
+                        {this.props.batsman2.onStrike && this.props.totalWickets === this.props.wickets ? null :
+                            <TableRow>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.name}<span>*</span></TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.runsScored}</TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.ballsFaced}</TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.foursHit}</TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{this.props.batsman2.sixesHit}</TableCell>
+                                <TableCell align='center' style={{color: '#fff'}}>{((this.props.batsman2.runsScored/this.props.batsman2.ballsFaced)*100).toFixed(2)}</TableCell>
+                            </TableRow>
+                        }
                         {this.props.battingTeam.map((batsman) => {
                             return(
                                 <TableRow key={batsman.name}>
@@ -79,11 +83,11 @@ class Scorecard extends Component {
                     </TableHead>
                     <TableBody>
                         <TableRow>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.bowler.name}*</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{Math.floor(this.props.bowler.ballsBowled/6)}.{this.props.bowler.ballsBowled%6}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.bowler.runsConceded}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{this.props.bowler.wicketsTaken}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{((this.props.bowler.runsConceded)/(this.props.bowler.ballsBowled/6)).toFixed(1)}</TableCell>
+                            <TableCell align='center' style={{color: this.props.totalBalls === this.props.balls || this.props.totalWickets === this.props.wickets ? '#808080' : '#fff'}}>{this.props.bowler.name}{this.props.totalBalls === this.props.balls || this.props.totalWickets === this.props.wickets ? null : <span>*</span>}</TableCell>
+                            <TableCell align='center' style={{color: this.props.totalBalls === this.props.balls || this.props.totalWickets === this.props.wickets ? '#808080' : '#fff'}}>{Math.floor(this.props.bowler.ballsBowled/6)}.{this.props.bowler.ballsBowled%6}</TableCell>
+                            <TableCell align='center' style={{color: this.props.totalBalls === this.props.balls || this.props.totalWickets === this.props.wickets ? '#808080' : '#fff'}}>{this.props.bowler.runsConceded}</TableCell>
+                            <TableCell align='center' style={{color: this.props.totalBalls === this.props.balls || this.props.totalWickets === this.props.wickets ? '#808080' : '#fff'}}>{this.props.bowler.wicketsTaken}</TableCell>
+                            <TableCell align='center' style={{color: this.props.totalBalls === this.props.balls || this.props.totalWickets === this.props.wickets ? '#808080' : '#fff'}}>{((this.props.bowler.runsConceded)/(this.props.bowler.ballsBowled/6)).toFixed(1)}</TableCell>
                         </TableRow>
                         {this.newBowlingTeam.map((bowler) => {
                             if(bowler.name !== this.props.bowler.name)
@@ -107,6 +111,8 @@ class Scorecard extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        totalBalls: state.totalBalls,
+        totalWickets: state.totalWickets,
         score: state.score,
         wickets: state.wickets,
         balls: state.balls,

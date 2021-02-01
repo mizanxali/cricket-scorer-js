@@ -12,12 +12,14 @@ import { BrowserRouter } from 'react-router-dom'
 // const openingNonStriker = prompt('Enter opening batsman name (non-striker).')
 // const openingBowler = prompt('Enter opening bowler name.')
 
-const totalOvers = 12
+const totalOvers = 1
 const openingStriker = 'D Warner'
 const openingNonStriker = 'C Gayle'
 const openingBowler = 'M Starc'
+const totalWickets= 2
 
 const initialState = {
+  totalWickets: totalWickets,
   totalBalls: totalOvers*6,
   ballByBall: [],
   score: 0,

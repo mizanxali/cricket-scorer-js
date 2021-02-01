@@ -35,18 +35,20 @@ const reducer = (state, action) => {
             //check for over-up - if true, push over-up bowler to bowlingTeam array, then reset updatedBowler object
             if(((state.balls + 1) % 6) === 0) {
                 upBowler = {...updatedBowler}
-                const newBowlerName = prompt('Over up! Enter new bowler name.')
-                updatedBowler.name = newBowlerName
-                updatedBowler.ballsBowled = 0
-                updatedBowler.runsConceded = 0
-                updatedBowler.wicketsTaken = 0
-                state.bowlingTeam.forEach((item, i) => {
-                    if(item.name === newBowlerName) {
-                        updatedBowler.ballsBowled = item.ballsBowled
-                        updatedBowler.runsConceded = item.runsConceded
-                        updatedBowler.wicketsTaken = item.wicketsTaken
-                    }
-                })
+                if(state.balls !== state.totalBalls - 1) {
+                    const newBowlerName = prompt('Over up! Enter new bowler name.')
+                    updatedBowler.name = newBowlerName
+                    updatedBowler.ballsBowled = 0
+                    updatedBowler.runsConceded = 0
+                    updatedBowler.wicketsTaken = 0
+                    state.bowlingTeam.forEach((item, i) => {
+                        if(item.name === newBowlerName) {
+                            updatedBowler.ballsBowled = item.ballsBowled
+                            updatedBowler.runsConceded = item.runsConceded
+                            updatedBowler.wicketsTaken = item.wicketsTaken
+                        }
+                    })
+                }
             }
 
             //check for strike rotation
@@ -83,22 +85,26 @@ const reducer = (state, action) => {
             if(updatedBatsman1.onStrike) {
                 updatedBatsman1.ballsFaced ++
                 outBatsman = {...updatedBatsman1}
-                const newBatsmanName = prompt('Out! Enter new batsman name.')
-                updatedBatsman1.name = newBatsmanName
-                updatedBatsman1.runsScored = 0
-                updatedBatsman1.ballsFaced = 0
-                updatedBatsman1.foursHit = 0
-                updatedBatsman1.sixesHit = 0
+                if(state.wickets !== state.totalWickets - 1 && state.balls !== state.totalBalls - 1) {
+                    const newBatsmanName = prompt('Out! Enter new batsman name.')
+                    updatedBatsman1.name = newBatsmanName
+                    updatedBatsman1.runsScored = 0
+                    updatedBatsman1.ballsFaced = 0
+                    updatedBatsman1.foursHit = 0
+                    updatedBatsman1.sixesHit = 0
+                }
             }
             if(updatedBatsman2.onStrike) {
                 updatedBatsman2.ballsFaced ++
                 outBatsman = {...updatedBatsman2}
-                const newBatsmanName = prompt('Out! Enter new batsman name.')
-                updatedBatsman2.name = newBatsmanName
-                updatedBatsman2.runsScored = 0
-                updatedBatsman2.ballsFaced = 0
-                updatedBatsman2.foursHit = 0
-                updatedBatsman2.sixesHit = 0
+                if(state.wickets !== state.totalWickets - 1 && state.balls !== state.totalBalls - 1) {
+                    const newBatsmanName = prompt('Out! Enter new batsman name.')
+                    updatedBatsman2.name = newBatsmanName
+                    updatedBatsman2.runsScored = 0
+                    updatedBatsman2.ballsFaced = 0
+                    updatedBatsman2.foursHit = 0
+                    updatedBatsman2.sixesHit = 0
+                }
             }
 
             //update bowler
@@ -108,18 +114,20 @@ const reducer = (state, action) => {
             //check for over-up - if true, push over-up bowler to bowlingTeam array, then reset updatedBowler object
             if(((state.balls + 1) % 6) === 0) {
                 upBowler = {...updatedBowler}
-                const newBowlerName = prompt('Over up! Enter new bowler name.')
-                updatedBowler.name = newBowlerName
-                updatedBowler.ballsBowled = 0
-                updatedBowler.runsConceded = 0
-                updatedBowler.wicketsTaken = 0
-                state.bowlingTeam.forEach((item, i) => {
-                    if(item.name === newBowlerName) {
-                        updatedBowler.ballsBowled = item.ballsBowled
-                        updatedBowler.runsConceded = item.runsConceded
-                        updatedBowler.wicketsTaken = item.wicketsTaken
-                    }
-                })
+                if(state.wickets !== state.totalWickets - 1 && state.balls !== state.totalBalls - 1) {
+                    const newBowlerName = prompt('Over up! Enter new bowler name.')
+                    updatedBowler.name = newBowlerName
+                    updatedBowler.ballsBowled = 0
+                    updatedBowler.runsConceded = 0
+                    updatedBowler.wicketsTaken = 0
+                    state.bowlingTeam.forEach((item, i) => {
+                        if(item.name === newBowlerName) {
+                            updatedBowler.ballsBowled = item.ballsBowled
+                            updatedBowler.runsConceded = item.runsConceded
+                            updatedBowler.wicketsTaken = item.wicketsTaken
+                        }
+                    })
+                }
             }
 
             //check for strike rotation

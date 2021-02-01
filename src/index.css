@@ -6,4 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-image: url('./assets/1660522.jpg'); */
+  background-color: #212121;
+  color: rgba(256, 256, 256, 0.9);
+  text-align: center;
 }

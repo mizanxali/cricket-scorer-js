@@ -1,18 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions'
+import { Button, ButtonGroup } from '@material-ui/core'
 
 const ScoreButtons = (props) => {
     return (
-        <div>
+        <div className='ScoreButtons' style={{margin: '30px auto'}}>
             {props.balls === props.totalBalls ? <h3>INNINGS OVER!</h3> : null}
-            <button disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(0)}>0</button>
-            <button disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(1)}>1</button>
-            <button disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(2)}>2</button>
-            <button disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(3)}>3</button>
-            <button disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(4)}>4</button>
-            <button disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(6)}>6</button>
-            <button disabled={props.balls === props.totalBalls} onClick={() => props.onWicketTaken()}>W</button>
+            <ButtonGroup>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(0)}>0</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(1)}>1</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(2)}>2</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(3)}>3</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(4)}>4</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onRunsScored(6)}>6</Button>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={props.balls === props.totalBalls} onClick={() => props.onWicketTaken()}>W</Button>
+            </ButtonGroup>
         </div>
     )
 }

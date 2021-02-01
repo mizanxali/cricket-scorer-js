@@ -16,7 +16,7 @@ class LiveScore extends Component {
                         <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{this.props.batsman1.name} : {this.props.batsman1.runsScored}({this.props.batsman1.ballsFaced}) {this.props.batsman1.onStrike ? <span>*</span> : null} </Typography>
                         <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{this.props.batsman2.name} : {this.props.batsman2.runsScored}({this.props.batsman2.ballsFaced}) {this.props.batsman2.onStrike ? <span>*</span> : null} </Typography>
                         <br />
-                        <Typography variant='h6'><SportsBaseballRoundedIcon style={{marginRight: '12px'}} />{this.props.bowler.name} : {this.props.bowler.wicketsTaken}/{this.props.bowler.runsConceded}</Typography>
+                        <Typography variant='h6'><SportsBaseballRoundedIcon style={{marginRight: '12px'}} />{this.props.bowler.name} : {this.props.bowler.wicketsTaken}/{this.props.bowler.runsConceded} ({Math.floor(this.props.bowler.ballsBowled/6)}.{this.props.bowler.ballsBowled%6})</Typography>
                     </CardContent>
                 </Card>
                 <div>

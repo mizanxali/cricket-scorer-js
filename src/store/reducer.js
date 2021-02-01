@@ -36,11 +36,18 @@ const reducer = (state, action) => {
             if(((state.balls + 1) % 6) === 0) {
                 upBowler = {...updatedBowler}
                 const newBowlerName = prompt('Over up! Enter new bowler name.')
+                console.log(newBowlerName);
                 updatedBowler.name = newBowlerName
                 updatedBowler.ballsBowled = 0
                 updatedBowler.runsConceded = 0
                 updatedBowler.wicketsTaken = 0
-                updatedBowler.bowlingEconomy = 0
+                state.bowlingTeam.forEach((item, i) => {
+                    if(item.name === newBowlerName) {
+                        updatedBowler.ballsBowled = item.ballsBowled
+                        updatedBowler.runsConceded = item.runsConceded
+                        updatedBowler.wicketsTaken = item.wicketsTaken
+                    }
+                })
             }
 
             //check for strike rotation

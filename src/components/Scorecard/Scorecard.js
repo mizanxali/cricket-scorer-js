@@ -5,7 +5,21 @@ import { Typography, Button, Table, TableBody, TableCell, TableHead, TableRow, C
 import ArrowBackRoundedIcon from '@material-ui/icons/ArrowBackRounded'
 
 class Scorecard extends Component {
+    newBowlingTeam = []
+
     render() {
+        this.props.bowlingTeam.map((item) => {
+            let index = this.newBowlingTeam.findIndex((element) => (element.name === item.name))
+            if(index === -1) {
+                this.newBowlingTeam.push({...item})
+            }
+            else {
+                this.newBowlingTeam[index].ballsBowled = item.ballsBowled
+                this.newBowlingTeam[index].runsConceded = item.runsConceded
+                this.newBowlingTeam[index].wicketsTaken = item.wicketsTaken
+            }
+        })
+
         return(
             <Container className='Scorecard' style={{marginTop: '30px'}}>
                 <Typography variant='h3'>Batting Scorecard</Typography>
@@ -40,12 +54,12 @@ class Scorecard extends Component {
                         {this.props.battingTeam.map((batsman) => {
                             return(
                                 <TableRow key={batsman.name}>
-                                    <TableCell align='center' style={{color: '#fff'}}>{batsman.name}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{batsman.runsScored}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{batsman.ballsFaced}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{batsman.foursHit}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{batsman.sixesHit}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{((batsman.runsScored/batsman.ballsFaced)*100).toFixed(2)}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{batsman.name}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{batsman.runsScored}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{batsman.ballsFaced}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{batsman.foursHit}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{batsman.sixesHit}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{((batsman.runsScored/batsman.ballsFaced)*100).toFixed(2)}</TableCell>
                                 </TableRow>
                             )
                         })}
@@ -69,16 +83,16 @@ class Scorecard extends Component {
                             <TableCell align='center' style={{color: '#fff'}}>{Math.floor(this.props.bowler.ballsBowled/6)}.{this.props.bowler.ballsBowled%6}</TableCell>
                             <TableCell align='center' style={{color: '#fff'}}>{this.props.bowler.runsConceded}</TableCell>
                             <TableCell align='center' style={{color: '#fff'}}>{this.props.bowler.wicketsTaken}</TableCell>
-                            <TableCell align='center' style={{color: '#fff'}}>{(this.props.bowler.runsConceded)/(this.props.bowler.ballsBowled/6)}</TableCell>
+                            <TableCell align='center' style={{color: '#fff'}}>{((this.props.bowler.runsConceded)/(this.props.bowler.ballsBowled/6)).toFixed(1)}</TableCell>
                         </TableRow>
-                        {this.props.bowlingTeam.map((bowler) => {
+                        {this.newBowlingTeam.map((bowler) => {
                             return(
                                 <TableRow key={bowler.name}>
-                                    <TableCell align='center' style={{color: '#fff'}}>{bowler.name}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{Math.floor(bowler.ballsBowled/6)}.{bowler.ballsBowled%6}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{bowler.runsConceded}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{bowler.wicketsTaken}</TableCell>
-                                    <TableCell align='center' style={{color: '#fff'}}>{((bowler.runsConceded)/(bowler.ballsBowled/6)).toFixed(1)}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{bowler.name}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{Math.floor(bowler.ballsBowled/6)}.{bowler.ballsBowled%6}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{bowler.runsConceded}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{bowler.wicketsTaken}</TableCell>
+                                    <TableCell align='center' style={{color: '#808080'}}>{((bowler.runsConceded)/(bowler.ballsBowled/6)).toFixed(1)}</TableCell>
                                 </TableRow>
                             )
                         })}

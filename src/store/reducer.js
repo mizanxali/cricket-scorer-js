@@ -71,6 +71,7 @@ const reducer = (state, action) => {
             let updatedBatsman2 = {...state.batsman2}
             let updatedBowler = {...state.bowler}
             let outBatsman = null
+            let upBowler = null
 
             //update out batsman and push him to battingTeam array, then reset updatedBatsman object
             if(updatedBatsman1.onStrike) {
@@ -98,6 +99,17 @@ const reducer = (state, action) => {
             updatedBowler.ballsBowled ++
             updatedBowler.wicketsTaken ++
 
+            //check for over-up - if true, push over-up bowler to bowlingTeam array, then reset updatedBowler object
+            if(((state.balls + 1) % 6) === 0) {
+                upBowler = {...updatedBowler}
+                const newBatsmanName = prompt('Over up! Enter new bowler name.')
+                updatedBowler.name = newBatsmanName
+                updatedBowler.ballsBowled = 0
+                updatedBowler.runsConceded = 0
+                updatedBowler.wicketsTaken = 0
+                updatedBowler.bowlingEconomy = 0
+            }
+
             //check for strike rotation
             if(((state.balls + 1) % 6) === 0) {
                 updatedBatsman1.onStrike = !updatedBatsman1.onStrike
@@ -120,7 +132,8 @@ const reducer = (state, action) => {
                     ...state.battingTeam.slice(0, state.battingTeam.length),
                     {...outBatsman},
                     ...state.battingTeam.slice(state.battingTeam.length)
-                ]
+                ],
+                bowlingTeam: upBowler ? [...state.bowlingTeam.slice(0, state.bowlingTeam.length), {...upBowler}, ...state.bowlingTeam.slice(state.bowlingTeam.length)] : state.bowlingTeam
             }
         }
             

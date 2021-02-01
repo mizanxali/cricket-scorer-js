@@ -86,6 +86,7 @@ class Scorecard extends Component {
                             <TableCell align='center' style={{color: '#fff'}}>{((this.props.bowler.runsConceded)/(this.props.bowler.ballsBowled/6)).toFixed(1)}</TableCell>
                         </TableRow>
                         {this.newBowlingTeam.map((bowler) => {
+                            if(bowler.name !== this.props.bowler.name)
                             return(
                                 <TableRow key={bowler.name}>
                                     <TableCell align='center' style={{color: '#808080'}}>{bowler.name}</TableCell>

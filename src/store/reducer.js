@@ -156,6 +156,46 @@ const reducer = (state, action) => {
                 bowlingTeam: upBowler ? [...state.bowlingTeam.slice(0, state.bowlingTeam.length), {...upBowler}, ...state.bowlingTeam.slice(state.bowlingTeam.length)] : state.bowlingTeam
             }
         }
+
+        case actionTypes.START_SECOND_INNINGS: {
+            const openingStriker = prompt('Enter opening batsman name (striker).')
+            const openingNonStriker = prompt('Enter opening batsman name (non-striker).')
+            const openingBowler = prompt('Enter opening bowler name.')
+            return {
+                currentInnings: 2,
+                target: action.payload.target,
+                totalWickets: action.payload.totalWickets,
+                totalBalls: action.payload.totalBalls,
+                ballByBall: [],
+                score: 0,
+                wickets: 0,
+                balls: 0,
+                batsman1: {
+                    name: openingStriker,
+                    runsScored: 0,
+                    ballsFaced: 0,
+                    foursHit: 0,
+                    sixesHit: 0,
+                    onStrike: true
+                },
+                batsman2: {
+                    name: openingNonStriker,
+                    runsScored: 0,
+                    ballsFaced: 0,
+                    foursHit: 0,
+                    sixesHit: 0,
+                    onStrike: false
+                },
+                bowler: {
+                    name: openingBowler,
+                    ballsBowled: 0,
+                    runsConceded: 0,
+                    wicketsTaken: 0
+                },
+                battingTeam: [],
+                bowlingTeam: []
+            }
+        }
             
         default:
             return state

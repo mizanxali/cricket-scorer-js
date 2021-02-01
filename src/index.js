@@ -19,6 +19,8 @@ const openingBowler = 'M Starc'
 const totalWickets= 2
 
 const initialState = {
+  currentInnings: 1,
+  target: null,
   totalWickets: totalWickets,
   totalBalls: totalOvers*6,
   ballByBall: [],

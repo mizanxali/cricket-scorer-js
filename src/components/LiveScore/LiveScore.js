@@ -19,8 +19,8 @@ class LiveScore extends Component {
                         <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{this.props.batsman2.name} : {this.props.batsman2.runsScored}({this.props.batsman2.ballsFaced}) {this.props.batsman2.onStrike && this.props.totalWickets !== this.props.wickets ? <span>*</span> : null} </Typography>
                         <br />
                         <Typography variant='h6'><SportsBaseballRoundedIcon style={{marginRight: '12px'}} />{this.props.bowler.name} : {this.props.bowler.wicketsTaken}/{this.props.bowler.runsConceded} ({Math.floor(this.props.bowler.ballsBowled/6)}.{this.props.bowler.ballsBowled%6})</Typography>
-                        {(this.props.target) && (this.props.target>this.props.score) ? <br /> : null}
-                        {(this.props.target) && (this.props.target>this.props.score) ? <Typography variant='body1'>TO WIN: {this.props.target - this.props.score} off {this.props.totalBalls - this.props.balls} balls</Typography> : null}
+                        {(this.props.target) && (this.props.target>this.props.score) && ((this.props.balls !== this.props.totalBalls) && (this.props.wickets !== this.props.totalWickets)) ? <br /> : null}
+                        {(this.props.target) && (this.props.target>this.props.score) && ((this.props.balls !== this.props.totalBalls) && (this.props.wickets !== this.props.totalWickets)) ? <Typography variant='body1'>TO WIN: {this.props.target - this.props.score} off {this.props.totalBalls - this.props.balls} balls</Typography> : null}
                     </CardContent>
                 </Card>
                 <div>

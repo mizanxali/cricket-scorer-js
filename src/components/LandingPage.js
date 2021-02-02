@@ -1,9 +1,9 @@
 import { TextField, Button, Container, Typography, withStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import * as actionTypes from '../../store/actions'
+import * as actionTypes from '../store/actions'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import HowToUse from '../HowToUse/HowToUse'
+import HowToUse from './HowToUse'
 
 const styles = {
     input: {
@@ -51,7 +51,7 @@ class LandingPage extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props
 
         return (
             <Container className="LandingPage">

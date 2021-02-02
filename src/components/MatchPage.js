@@ -1,6 +1,6 @@
 import { Button, Container } from '@material-ui/core'
-import LiveScore from '../LiveScore/LiveScore'
-import ScoreButtons from '../ScoreButtons/ScoreButtons'
+import LiveScore from './LiveScore'
+import ScoreButtons from './ScoreButtons'
 import { Link } from 'react-router-dom'
 import AssessmentRoundedIcon from '@material-ui/icons/AssessmentRounded'
 

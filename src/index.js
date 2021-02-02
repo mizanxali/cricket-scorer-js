@@ -12,7 +12,7 @@ const store = createStore(reducer)
 ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename='/cricket-scorer-js'>
           <App />
         </BrowserRouter>
       </Provider>

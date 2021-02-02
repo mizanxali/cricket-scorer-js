@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/cricket-scorer-js/static/css/main.d7c20d4b.chunk.css",
-    "main.js": "/cricket-scorer-js/static/js/main.b08df1fd.chunk.js",
-    "main.js.map": "/cricket-scorer-js/static/js/main.b08df1fd.chunk.js.map",
+    "main.js": "/cricket-scorer-js/static/js/main.0891f17b.chunk.js",
+    "main.js.map": "/cricket-scorer-js/static/js/main.0891f17b.chunk.js.map",
     "runtime-main.js": "/cricket-scorer-js/static/js/runtime-main.7baf8878.js",
     "runtime-main.js.map": "/cricket-scorer-js/static/js/runtime-main.7baf8878.js.map",
     "static/css/2.aa472371.chunk.css": "/cricket-scorer-js/static/css/2.aa472371.chunk.css",
-    "static/js/2.12020901.chunk.js": "/cricket-scorer-js/static/js/2.12020901.chunk.js",
-    "static/js/2.12020901.chunk.js.map": "/cricket-scorer-js/static/js/2.12020901.chunk.js.map",
+    "static/js/2.17aeef40.chunk.js": "/cricket-scorer-js/static/js/2.17aeef40.chunk.js",
+    "static/js/2.17aeef40.chunk.js.map": "/cricket-scorer-js/static/js/2.17aeef40.chunk.js.map",
     "index.html": "/cricket-scorer-js/index.html",
     "static/css/2.aa472371.chunk.css.map": "/cricket-scorer-js/static/css/2.aa472371.chunk.css.map",
     "static/css/main.d7c20d4b.chunk.css.map": "/cricket-scorer-js/static/css/main.d7c20d4b.chunk.css.map",
-    "static/js/2.12020901.chunk.js.LICENSE.txt": "/cricket-scorer-js/static/js/2.12020901.chunk.js.LICENSE.txt",
+    "static/js/2.17aeef40.chunk.js.LICENSE.txt": "/cricket-scorer-js/static/js/2.17aeef40.chunk.js.LICENSE.txt",
     "static/media/index.css": "/cricket-scorer-js/static/media/roboto-vietnamese-400-normal.52cebac0.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.7baf8878.js",
     "static/css/2.aa472371.chunk.css",
-    "static/js/2.12020901.chunk.js",
+    "static/js/2.17aeef40.chunk.js",
     "static/css/main.d7c20d4b.chunk.css",
-    "static/js/main.b08df1fd.chunk.js"
+    "static/js/main.0891f17b.chunk.js"
   ]
 }

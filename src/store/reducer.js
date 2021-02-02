@@ -70,8 +70,10 @@ const reducer = (state = initialState, action) => {
                     runsConceded: 0,
                     wicketsTaken: 0
                 },
-                battingTeam: [],
-                bowlingTeam: []
+                battingTeam1: [],
+                bowlingTeam2: [],
+                battingTeam2: [],
+                bowlingTeam1: []
             }
         }
 
@@ -113,13 +115,24 @@ const reducer = (state = initialState, action) => {
                     updatedBowler.ballsBowled = 0
                     updatedBowler.runsConceded = 0
                     updatedBowler.wicketsTaken = 0
-                    state.bowlingTeam.forEach((item, i) => {
-                        if(item.name === newBowlerName) {
-                            updatedBowler.ballsBowled = item.ballsBowled
-                            updatedBowler.runsConceded = item.runsConceded
-                            updatedBowler.wicketsTaken = item.wicketsTaken
-                        }
-                    })
+                    if(state.currentInnings === 1) {
+                        state.bowlingTeam2.forEach((item) => {
+                            if(item.name === newBowlerName) {
+                                updatedBowler.ballsBowled = item.ballsBowled
+                                updatedBowler.runsConceded = item.runsConceded
+                                updatedBowler.wicketsTaken = item.wicketsTaken
+                            }
+                        })
+                    }
+                    else {
+                        state.bowlingTeam1.forEach((item) => {
+                            if(item.name === newBowlerName) {
+                                updatedBowler.ballsBowled = item.ballsBowled
+                                updatedBowler.runsConceded = item.runsConceded
+                                updatedBowler.wicketsTaken = item.wicketsTaken
+                            }
+                        })
+                    }
                 }
             }
 
@@ -131,17 +144,14 @@ const reducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                ballByBall: [
-                    ...state.ballByBall.slice(0, state.ballByBall.length),
-                    action.payload.runsScored,
-                    ...state.ballByBall.slice(state.ballByBall.length)
-                ],
+                ballByBall: [...state.ballByBall.slice(0, state.ballByBall.length), action.payload.runsScored, ...state.ballByBall.slice(state.ballByBall.length)],
                 score: state.score + action.payload.runsScored,
                 balls: state.balls + 1,
                 batsman1: updatedBatsman1,
                 batsman2: updatedBatsman2,
                 bowler: updatedBowler,
-                bowlingTeam: upBowler ? [...state.bowlingTeam.slice(0, state.bowlingTeam.length), {...upBowler}, ...state.bowlingTeam.slice(state.bowlingTeam.length)] : state.bowlingTeam
+                bowlingTeam2: (state.currentInnings === 1 ? (upBowler ? [...state.bowlingTeam2.slice(0, state.bowlingTeam2.length), {...upBowler}, ...state.bowlingTeam2.slice(state.bowlingTeam2.length)] : state.bowlingTeam2) : state.bowlingTeam2 ),
+                bowlingTeam1: (state.currentInnings === 2 ? (upBowler ? [...state.bowlingTeam1.slice(0, state.bowlingTeam1.length), {...upBowler}, ...state.bowlingTeam1.slice(state.bowlingTeam1.length)] : state.bowlingTeam1) : state.bowlingTeam1 )
             }
         }
 
@@ -192,13 +202,24 @@ const reducer = (state = initialState, action) => {
                     updatedBowler.ballsBowled = 0
                     updatedBowler.runsConceded = 0
                     updatedBowler.wicketsTaken = 0
-                    state.bowlingTeam.forEach((item, i) => {
-                        if(item.name === newBowlerName) {
-                            updatedBowler.ballsBowled = item.ballsBowled
-                            updatedBowler.runsConceded = item.runsConceded
-                            updatedBowler.wicketsTaken = item.wicketsTaken
-                        }
-                    })
+                    if(state.currentInnings === 1) {
+                        state.bowlingTeam2.forEach((item) => {
+                            if(item.name === newBowlerName) {
+                                updatedBowler.ballsBowled = item.ballsBowled
+                                updatedBowler.runsConceded = item.runsConceded
+                                updatedBowler.wicketsTaken = item.wicketsTaken
+                            }
+                        })
+                    }
+                    else {
+                        state.bowlingTeam1.forEach((item) => {
+                            if(item.name === newBowlerName) {
+                                updatedBowler.ballsBowled = item.ballsBowled
+                                updatedBowler.runsConceded = item.runsConceded
+                                updatedBowler.wicketsTaken = item.wicketsTaken
+                            }
+                        })
+                    }
                 }
             }
 
@@ -210,22 +231,16 @@ const reducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                ballByBall: [
-                    ...state.ballByBall.slice(0, state.ballByBall.length),
-                    'W',
-                    ...state.ballByBall.slice(state.ballByBall.length)
-                ],
+                ballByBall: [...state.ballByBall.slice(0, state.ballByBall.length), 'W', ...state.ballByBall.slice(state.ballByBall.length)],
                 wickets: state.wickets + 1,
                 balls: state.balls + 1,
                 batsman1: updatedBatsman1,
                 batsman2: updatedBatsman2,
                 bowler: updatedBowler,
-                battingTeam: [
-                    ...state.battingTeam.slice(0, state.battingTeam.length),
-                    {...outBatsman},
-                    ...state.battingTeam.slice(state.battingTeam.length)
-                ],
-                bowlingTeam: upBowler ? [...state.bowlingTeam.slice(0, state.bowlingTeam.length), {...upBowler}, ...state.bowlingTeam.slice(state.bowlingTeam.length)] : state.bowlingTeam
+                battingTeam1: (state.currentInnings === 1 ? [...state.battingTeam1.slice(0, state.battingTeam1.length), {...outBatsman}, ...state.battingTeam1.slice(state.battingTeam1.length)] : state.battingTeam1 ),
+                battingTeam2: (state.currentInnings === 2 ? [...state.battingTeam2.slice(0, state.battingTeam2.length), {...outBatsman}, ...state.battingTeam2.slice(state.battingTeam2.length)] : state.battingTeam2 ),
+                bowlingTeam2: (state.currentInnings === 1 ? (upBowler ? [...state.bowlingTeam2.slice(0, state.bowlingTeam2.length), {...upBowler}, ...state.bowlingTeam2.slice(state.bowlingTeam2.length)] : state.bowlingTeam2) : state.bowlingTeam2 ),
+                bowlingTeam1: (state.currentInnings === 2 ? (upBowler ? [...state.bowlingTeam1.slice(0, state.bowlingTeam1.length), {...upBowler}, ...state.bowlingTeam1.slice(state.bowlingTeam1.length)] : state.bowlingTeam1) : state.bowlingTeam1 )
             }
         }
 
@@ -234,6 +249,7 @@ const reducer = (state = initialState, action) => {
             const openingNonStriker = prompt('Enter opening batsman name (non-striker).')
             const openingBowler = prompt('Enter opening bowler name.')
             return {
+                ...state,
                 currentInnings: 2,
                 target: action.payload.target,
                 totalWickets: action.payload.totalWickets,
@@ -264,8 +280,10 @@ const reducer = (state = initialState, action) => {
                     runsConceded: 0,
                     wicketsTaken: 0
                 },
-                battingTeam: [],
-                bowlingTeam: []
+                battingTeam1: (state.currentInnings === 1 ? [...state.battingTeam1.slice(0, state.battingTeam1.length), {...state.batsman1}, {...state.batsman2}, ...state.battingTeam1.slice(state.battingTeam1.length)] : state.battingTeam1 ),
+                battingTeam2: (state.currentInnings === 2 ? [...state.battingTeam2.slice(0, state.battingTeam2.length), {...state.batsman1}, {...state.batsman2}, ...state.battingTeam2.slice(state.battingTeam2.length)] : state.battingTeam2 ),
+                bowlingTeam2: (state.currentInnings === 1 ? [...state.bowlingTeam2.slice(0, state.bowlingTeam2.length), {...state.bowler}, ...state.bowlingTeam2.slice(state.bowlingTeam2.length)] : state.bowlingTeam2 ),
+                bowlingTeam1: (state.currentInnings === 2 ? [...state.bowlingTeam1.slice(0, state.bowlingTeam1.length), {...state.bowler}, ...state.bowlingTeam1.slice(state.bowlingTeam1.length)] : state.bowlingTeam1 )
             }
         }
             

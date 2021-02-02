@@ -1,4 +1,4 @@
-import { Button, Container, Typography } from '@material-ui/core'
+import { Button, Container } from '@material-ui/core'
 import LiveScore from '../LiveScore/LiveScore'
 import ScoreButtons from '../ScoreButtons/ScoreButtons'
 import { Link } from 'react-router-dom'
@@ -10,6 +10,8 @@ const MatchPage = () => {
       <LiveScore />
       <ScoreButtons />
       <Link to='/scorecard' style={{textDecoration: 'none'}}><Button startIcon={<AssessmentRoundedIcon />} variant='contained' color='secondary'>Scorecard</Button></Link>
+      <br />
+      <a href='/' style={{textDecoration: 'none'}}><Button variant='text' style={{color: 'red', marginTop: '30px'}}>START NEW MATCH</Button></a>
     </Container>
   )
 }

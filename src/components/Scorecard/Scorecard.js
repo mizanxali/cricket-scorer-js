@@ -21,9 +21,9 @@ class Scorecard extends Component {
         })
 
         return(
-            <Container className='Scorecard' style={{marginTop: '30px'}}>
+            <Container fixed className='Scorecard' style={{marginTop: '30px'}}>
                 <Typography variant='h3'>Batting Scorecard</Typography>
-                <Table width='100%'>
+                <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell align='center' style={{color: '#fff'}}>Name</TableCell>

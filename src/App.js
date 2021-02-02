@@ -1,7 +1,6 @@
 import { ThemeProvider, createMuiTheme } from '@material-ui/core'
 import { orange, purple } from '@material-ui/core/colors'
 import { Route } from 'react-router'
-import './App.css'
 import MatchPage from './components/MatchPage/MatchPage'
 import Scorecard from './components/Scorecard/Scorecard'
 import LandingPage from './components/LandingPage/LandingPage'

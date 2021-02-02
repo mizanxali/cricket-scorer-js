@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import * as actionTypes from '../../store/actions'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
+import HowToUse from '../HowToUse/HowToUse'
 
 const styles = {
     input: {
@@ -57,6 +58,8 @@ class LandingPage extends Component {
               <Typography variant='h3'>CRICKET SCORER</Typography>
               <Typography variant='h6'>Start a new match in under 30 seconds!</Typography>
               <br />
+              <HowToUse />
+              <br />
               <form>
                   <label style={{display: 'block', margin: 'auto'}} htmlFor='overs'>Overs</label>
                   <input style={{display: 'block', margin: '10px auto 20px'}} id='overs' type='number' value={this.state.overs} onChange={this.onOversChangedHandler} />
@@ -70,6 +73,8 @@ class LandingPage extends Component {
                   <TextField style={{display: 'block', margin: '10px auto 20px'}} InputProps={{className: classes.input}} id='openingBowler' type='text' value={this.state.openingBowler} onChange={this.onOpeningBowlerChangedHandler} />
               </form>
               <Link to='/match' style={{textDecoration: 'none'}}><Button onClick={() => this.props.onStartMatch({...this.state})} variant='contained' color='secondary'>START MATCH</Button></Link>
+              <br />
+              <Typography color='primary' variant='subtitle2' style={{marginTop: '30px'}}>Developed by <a href='https://twitter.com/mizanxali' style={{textDecoration: 'none', color: 'inherit'}}>@mizanxali</a></Typography>
             </Container>
           )
     }

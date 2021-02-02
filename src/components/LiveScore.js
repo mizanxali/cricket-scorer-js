@@ -12,7 +12,7 @@ const LiveScore = (props) => {
                 <CardContent>
                     <Typography variant='body1'>INNINGS {props.currentInnings} {props.target ? <span> - TARGET: {props.target}</span> : <span> ({props.totalBalls/6} overs)</span>}</Typography>
                     <br />
-                    <Typography variant='h4' style={{fontWeight: 'bold'}}>{props.score}-{props.wickets} ({Math.floor(props.balls/6)}.{props.balls%6})</Typography>
+                    <Typography variant='h4' style={{fontWeight: 'bold'}}>{props.target ?  (props.team2Name.substring(0,3).toUpperCase()) : (props.team1Name.substring(0,3).toUpperCase())} {props.score}-{props.wickets} ({Math.floor(props.balls/6)}.{props.balls%6})</Typography>
                     <br />
                     <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{props.batsman1.name} : {props.batsman1.runsScored}({props.batsman1.ballsFaced}) {props.batsman1.onStrike && props.totalWickets !== props.wickets ? <span>*</span> : null} </Typography>
                     <Typography variant='h6'><SportsCricketRoundedIcon style={{marginRight: '12px'}} />{props.batsman2.name} : {props.batsman2.runsScored}({props.batsman2.ballsFaced}) {props.batsman2.onStrike && props.totalWickets !== props.wickets ? <span>*</span> : null} </Typography>
@@ -32,6 +32,8 @@ const LiveScore = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        team1Name: state.team1,
+        team2Name: state.team2,
         currentInnings: state.currentInnings,
         target: state.target,
         totalBalls: state.totalBalls,

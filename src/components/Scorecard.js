@@ -35,7 +35,7 @@ class Scorecard extends Component {
 
         return(
             <Container fixed className='Scorecard' style={{marginTop: '30px'}}>
-                <Typography variant='h3'>Team 1 Batting Scorecard</Typography>
+                <Typography variant='h3'>{this.props.team1Name} Batting Scorecard</Typography>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -85,7 +85,7 @@ class Scorecard extends Component {
                     </TableBody>
                 </Table>
                 <br />
-                <Typography variant='h3'>Team 2 Bowling Scorecard</Typography>
+                <Typography variant='h3'>{this.props.team2Name} Bowling Scorecard</Typography>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -124,7 +124,7 @@ class Scorecard extends Component {
                     </TableBody>
                 </Table>
                 <br />
-                <Typography variant='h3'>Team 2 Batting Scorecard</Typography>
+                <Typography variant='h3'>{this.props.team2Name} Batting Scorecard</Typography>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -174,7 +174,7 @@ class Scorecard extends Component {
                     </TableBody>
                 </Table>
                 <br />
-                <Typography variant='h3'>Team 1 Bowling Scorecard</Typography>
+                <Typography variant='h3'>{this.props.team1Name} Bowling Scorecard</Typography>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -212,7 +212,7 @@ class Scorecard extends Component {
                         })}
                     </TableBody>
                 </Table>
-                <Link to='/match' style={{textDecoration: 'none'}}><Button startIcon={<ArrowBackRoundedIcon />} variant='contained' color='secondary' style={{marginTop: '30px'}}>Back</Button></Link>
+                <Link to='/match' style={{textDecoration: 'none'}}><Button startIcon={<ArrowBackRoundedIcon />} variant='contained' color='secondary' style={{margin: '30px auto'}}>Back</Button></Link>
             </Container>
         )
     }
@@ -220,6 +220,8 @@ class Scorecard extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        team1Name: state.team1,
+        team2Name: state.team2,
         currentInnings: state.currentInnings,
         totalBalls: state.totalBalls,
         totalWickets: state.totalWickets,

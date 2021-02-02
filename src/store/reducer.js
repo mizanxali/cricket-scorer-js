@@ -1,6 +1,8 @@
 import * as actionTypes from './actions'
 
 const initialState = {
+    team1: 'Dummy Team 1',
+    team2: 'Dummy Team 2',
     currentInnings: 1,
     target: null,
     totalWickets: 10,
@@ -40,6 +42,8 @@ const reducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.START_MATCH: {
             return {
+                team1: action.payload.team1,
+                team2: action.payload.team2,
                 currentInnings: 1,
                 target: null,
                 totalWickets: action.payload.wickets,

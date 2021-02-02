@@ -13,11 +13,25 @@ const styles = {
 
 class LandingPage extends Component {
     state = {
+        team1: 'India',
+        team2: 'Australia',
         overs: 20,
         wickets: 10,
         openingStriker: 'R Sharma',
         openingNonStriker: 'S Dhawan',
         openingBowler: 'M Starc'
+    }
+
+    onTeam1ChangedHandler = (event) => {
+        this.setState({
+            team1: event.target.value
+        })
+    }
+
+    onTeam2ChangedHandler = (event) => {
+        this.setState({
+            team2: event.target.value
+        })
     }
 
     onOversChangedHandler = (event) => {
@@ -61,6 +75,10 @@ class LandingPage extends Component {
               <HowToUse />
               <br />
               <form>
+                  <label style={{display: 'block', margin: 'auto'}} htmlFor='team1'>Name of team batting first</label>
+                  <TextField style={{display: 'block', margin: '10px auto 20px'}} InputProps={{className: classes.input}} id='team1' type='text' value={this.state.team1} onChange={this.onTeam1ChangedHandler} />
+                  <label style={{display: 'block', margin: 'auto'}} htmlFor='team2'>Name of team bowling first</label>
+                  <TextField style={{display: 'block', margin: '10px auto 20px'}} InputProps={{className: classes.input}} id='team2' type='text' value={this.state.team2} onChange={this.onTeam2ChangedHandler} />
                   <label style={{display: 'block', margin: 'auto'}} htmlFor='overs'>Overs</label>
                   <input style={{display: 'block', margin: '10px auto 20px'}} id='overs' type='number' value={this.state.overs} onChange={this.onOversChangedHandler} />
                   <label style={{display: 'block', margin: 'auto'}} htmlFor='wickets'>Wickets</label>

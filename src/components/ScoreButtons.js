@@ -7,8 +7,8 @@ const ScoreButtons = (props) => {
     return (
         <div className='ScoreButtons' style={{margin: '30px auto'}}>
             {(props.currentInnings === 1) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) ? <Typography variant='h5' color='primary'>INNINGS OVER! <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={() => props.onStartSecondInnings(props.score, props.totalBalls, props.totalWickets)}>Click here to start new innings.</span></Typography> : null}
-            {(props.currentInnings === 2) && (props.score >= props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! TEAM 2 WINS BY {props.totalWickets - props.wickets} WICKETS!</Typography> : null}
-            {(props.currentInnings === 2) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) && (props.score<props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! TEAM 1 WINS BY {props.target - props.score - 1} RUNS!</Typography> : null}
+            {(props.currentInnings === 2) && (props.score >= props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! {props.team2Name} win by {props.totalWickets - props.wickets} wickets.</Typography> : null}
+            {(props.currentInnings === 2) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) && (props.score<props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! {props.team1Name} win by {props.target - props.score - 1} runs.</Typography> : null}
             <br />
             <ButtonGroup>
             <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(0)}>0</Button>
@@ -25,6 +25,8 @@ const ScoreButtons = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        team1Name: state.team1,
+        team2Name: state.team2,
         currentInnings: state.currentInnings,
         target: state.target,
         score: state.score,

@@ -11,7 +11,7 @@ const MatchPage = () => {
       <ScoreButtons />
       <Link to='/scorecard' style={{textDecoration: 'none'}}><Button startIcon={<AssessmentRoundedIcon />} variant='contained' color='secondary'>Scorecard</Button></Link>
       <br />
-      <a href='/' style={{textDecoration: 'none'}}><Button variant='text' style={{color: 'red', marginTop: '30px'}}>START NEW MATCH</Button></a>
+      <a href='/cricket-scorer-js' style={{textDecoration: 'none'}}><Button variant='text' style={{color: 'red', marginTop: '30px'}}>START NEW MATCH</Button></a>
     </Container>
   )
 }

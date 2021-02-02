@@ -1,8 +1,80 @@
 import * as actionTypes from './actions'
 
-const reducer = (state, action) => {
+const initialState = {
+    currentInnings: 1,
+    target: null,
+    totalWickets: 10,
+    totalBalls: 20*6,
+    ballByBall: [],
+    score: 0,
+    wickets: 0,
+    balls: 0,
+    batsman1: {
+        name: 'Dummy Batsman',
+        runsScored: 0,
+        ballsFaced: 0,
+        foursHit: 0,
+        sixesHit: 0,
+        onStrike: true
+    },
+    batsman2: {
+        name: 'Dummy Batsman',
+        runsScored: 0,
+        ballsFaced: 0,
+        foursHit: 0,
+        sixesHit: 0,
+        onStrike: false
+    },
+    bowler: {
+        name: 'Dummy Bowler',
+        ballsBowled: 0,
+        runsConceded: 0,
+        wicketsTaken: 0
+    },
+    battingTeam: [],
+    bowlingTeam: []
+}
+
+const reducer = (state = initialState, action) => {
 
     switch(action.type) {
+        case actionTypes.START_MATCH: {
+            return {
+                currentInnings: 1,
+                target: null,
+                totalWickets: action.payload.wickets,
+                totalBalls: action.payload.overs*6,
+                ballByBall: [],
+                score: 0,
+                wickets: 0,
+                balls: 0,
+                batsman1: {
+                    name: action.payload.openingStriker,
+                    runsScored: 0,
+                    ballsFaced: 0,
+                    foursHit: 0,
+                    sixesHit: 0,
+                    onStrike: true
+                },
+                batsman2: {
+                    name: action.payload.openingNonStriker,
+                    runsScored: 0,
+                    ballsFaced: 0,
+                    foursHit: 0,
+                    sixesHit: 0,
+                    onStrike: false
+                },
+                bowler: {
+                    name: action.payload.openingBowler,
+                    ballsBowled: 0,
+                    runsConceded: 0,
+                    wicketsTaken: 0
+                },
+                battingTeam: [],
+                bowlingTeam: []
+            }
+        }
+
         case actionTypes.RUNS_SCORED: {
             //copy batsmen and bowler into new objects
             let updatedBatsman1 = {...state.batsman1}

@@ -103,7 +103,7 @@ class Scorecard extends Component {
                         })}
                     </TableBody>
                 </Table>
-                <Link to='/' style={{textDecoration: 'none'}}><Button startIcon={<ArrowBackRoundedIcon />} variant='contained' color='secondary' style={{marginTop: '30px'}}>Back</Button></Link>
+                <Link to='/match' style={{textDecoration: 'none'}}><Button startIcon={<ArrowBackRoundedIcon />} variant='contained' color='secondary' style={{marginTop: '30px'}}>Back</Button></Link>
             </Container>
         )
     }

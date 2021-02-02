@@ -1,3 +1,4 @@
+export const START_MATCH = 'START_MATCH'
 export const RUNS_SCORED = 'RUNS_SCORED'
 export const WICKET_TAKEN = 'WICKET_TAKEN'
 export const START_SECOND_INNINGS = 'START_SECOND_INNINGS'

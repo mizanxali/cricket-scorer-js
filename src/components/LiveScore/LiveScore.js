@@ -11,7 +11,7 @@ class LiveScore extends Component {
             <div className='LiveScore'>
                 <Card variant='outlined' style={{width: '90%', margin: '30px auto', backgroundColor: '#424242', color: '#fff', borderRadius: '25px'}}>
                     <CardContent>
-                        <Typography variant='body1'>INNINGS {this.props.currentInnings} {this.props.target ? <span> - TARGET: {this.props.target}</span> : null}</Typography>
+                        <Typography variant='body1'>INNINGS {this.props.currentInnings} {this.props.target ? <span> - TARGET: {this.props.target}</span> : <span> ({this.props.totalBalls/6} overs)</span>}</Typography>
                         <br />
                         <Typography variant='h4' style={{fontWeight: 'bold'}}>{this.props.score}-{this.props.wickets} ({Math.floor(this.props.balls/6)}.{this.props.balls%6})</Typography>
                         <br />

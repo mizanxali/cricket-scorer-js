@@ -1,26 +1,42 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actionTypes from '../store/actions'
-import { Button, ButtonGroup, Typography } from '@material-ui/core'
+import { Button, ButtonGroup, Typography, Checkbox, FormControlLabel } from '@material-ui/core'
 
-const ScoreButtons = (props) => {
-    return (
-        <div className='ScoreButtons' style={{margin: '30px auto'}}>
-            {(props.currentInnings === 1) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) ? <Typography variant='h5' color='primary'>INNINGS OVER! <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={() => props.onStartSecondInnings(props.score, props.totalBalls, props.totalWickets)}>Click here to start new innings.</span></Typography> : null}
-            {(props.currentInnings === 2) && (props.score >= props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! {props.team2Name} win by {props.totalWickets - props.wickets} wickets.</Typography> : null}
-            {(props.currentInnings === 2) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) && (props.score<props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! {props.team1Name} win by {props.target - props.score - 1} runs.</Typography> : null}
-            <br />
-            <ButtonGroup>
-            <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(0)}>0</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(1)}>1</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(2)}>2</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(3)}>3</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(4)}>4</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(6)}>6</Button>
-                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onWicketTaken()}>W</Button>
-            </ButtonGroup>
-        </div>
-    )
+class ScoreButtons extends Component {
+    state = {
+        isNoBallChecked: false
+    }
+
+    onNoBallCheckedHandler = (event) => {
+        this.setState({isNoBallChecked: event.target.checked})
+    }
+
+    render() {
+        return (
+            <div className='ScoreButtons' style={{margin: '30px auto'}}>
+                {(this.props.currentInnings === 1) && ((this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets)) ? <Typography variant='h5' color='primary'>INNINGS OVER! <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={() => this.props.onStartSecondInnings(this.props.score, this.props.totalBalls, this.props.totalWickets)}>Click here to start new innings.</span></Typography> : null}
+                {(this.props.currentInnings === 2) && (this.props.score >= this.props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! {this.props.team2Name} win by {this.props.totalWickets - this.props.wickets} wickets.</Typography> : null}
+                {(this.props.currentInnings === 2) && ((this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets)) && (this.props.score<this.props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! {this.props.team1Name} win by {this.props.target - this.props.score - 1} runs.</Typography> : null}
+                <br />
+                <ButtonGroup>
+                <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={this.state.isNoBallChecked ? () => this.props.onNoBallBowled(0) : () => this.props.onRunsScored(0)}>0</Button>
+                    <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={this.state.isNoBallChecked ? () => this.props.onNoBallBowled(1) : () => this.props.onRunsScored(1)}>1</Button>
+                    <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={this.state.isNoBallChecked ? () => this.props.onNoBallBowled(2) : () => this.props.onRunsScored(2)}>2</Button>
+                    <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={this.state.isNoBallChecked ? () => this.props.onNoBallBowled(3) : () => this.props.onRunsScored(3)}>3</Button>
+                    <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={this.state.isNoBallChecked ? () => this.props.onNoBallBowled(4) : () => this.props.onRunsScored(4)}>4</Button>
+                    <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={this.state.isNoBallChecked ? () => this.props.onNoBallBowled(6) : () => this.props.onRunsScored(6)}>6</Button>
+                </ButtonGroup>
+                <br />
+                <ButtonGroup>
+                    <Button style={{fontWeight: 'bold', marginTop: '3px'}} variant='contained'color='primary' disabled={(this.state.isNoBallChecked) || (this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={() => this.props.onWideBallBowled()}>WIDE</Button>
+                    <Button style={{fontWeight: 'bold', marginTop: '3px'}} variant='contained' color='primary' disabled={(this.state.isNoBallChecked) || (this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={() => this.props.onWicketTaken()}>W</Button>
+                </ButtonGroup>
+                <br />
+                <FormControlLabel control={<Checkbox checked={this.state.isNoBallChecked} onChange={this.onNoBallCheckedHandler} name="noball" />} label="NO BALL" />
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -41,7 +57,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onRunsScored: (runs) => dispatch({type: actionTypes.RUNS_SCORED, payload: {runsScored: runs}}),
         onWicketTaken: () => dispatch({type: actionTypes.WICKET_TAKEN}),
-        onStartSecondInnings: (finalScore, totalBalls, totalWickets) => dispatch({type: actionTypes.START_SECOND_INNINGS, payload: {target: finalScore+1, totalBalls: totalBalls, totalWickets: totalWickets}})
+        onStartSecondInnings: (finalScore, totalBalls, totalWickets) => dispatch({type: actionTypes.START_SECOND_INNINGS, payload: {target: finalScore+1, totalBalls: totalBalls, totalWickets: totalWickets}}),
+        onWideBallBowled: () => dispatch({type: actionTypes.WIDE_BALL_BOWLED}),
+        onNoBallBowled: (runs) => dispatch({type: actionTypes.NO_BALL_BOWLED, payload: {runsScored: runs}})
     }
 }
 

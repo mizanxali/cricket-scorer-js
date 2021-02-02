@@ -9,7 +9,7 @@ const styles = {
     input: {
       color: "white"
     }
-  };
+}
 
 class LandingPage extends Component {
     state = {

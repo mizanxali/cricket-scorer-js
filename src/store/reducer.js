@@ -248,6 +248,61 @@ const reducer = (state = initialState, action) => {
             }
         }
 
+        case actionTypes.WIDE_BALL_BOWLED: {
+            return {
+                ...state,
+                ballByBall: [...state.ballByBall.slice(0, state.ballByBall.length), 'WD', ...state.ballByBall.slice(state.ballByBall.length)],
+                score: state.score + 1,
+                bowler: {
+                    ...state.bowler,
+                    runsConceded: state.bowler.runsConceded + 1
+                }
+            }
+        }
+
+        case actionTypes.NO_BALL_BOWLED: {
+            //copy batsmen and bowler into new objects
+            let updatedBatsman1 = {...state.batsman1}
+            let updatedBatsman2 = {...state.batsman2}
+            let updatedBowler = {...state.bowler}
+
+            //update batsmen
+            if(updatedBatsman1.onStrike) {
+                updatedBatsman1.runsScored += action.payload.runsScored
+                updatedBatsman1.ballsFaced ++
+                if(action.payload.runsScored === 4)
+                    updatedBatsman1.foursHit ++
+                if(action.payload.runsScored === 6)
+                    updatedBatsman1.sixesHit ++
+            }
+            if(updatedBatsman2.onStrike) {
+                updatedBatsman2.runsScored += action.payload.runsScored
+                updatedBatsman2.ballsFaced ++
+                if(action.payload.runsScored === 4)
+                    updatedBatsman2.foursHit ++
+                if(action.payload.runsScored === 6)
+                    updatedBatsman2.sixesHit ++
+            }
+
+            //update bowler
+            updatedBowler.runsConceded += (action.payload.runsScored + 1)
+
+            //check for strike rotation
+            if(action.payload.runsScored === 1 || action.payload.runsScored === 3) {
+                updatedBatsman1.onStrike = !updatedBatsman1.onStrike
+                updatedBatsman2.onStrike = !updatedBatsman2.onStrike
+            }
+
+            return {
+                ...state,
+                ballByBall: [...state.ballByBall.slice(0, state.ballByBall.length), 'NB+' + action.payload.runsScored.toString(), ...state.ballByBall.slice(state.ballByBall.length)],
+                score: state.score + action.payload.runsScored + 1,
+                batsman1: updatedBatsman1,
+                batsman2: updatedBatsman2,
+                bowler: updatedBowler,
+            }
+        }
+
         case actionTypes.START_SECOND_INNINGS: {
             const openingStriker = prompt('Enter opening batsman name (striker).')
             const openingNonStriker = prompt('Enter opening batsman name (non-striker).')

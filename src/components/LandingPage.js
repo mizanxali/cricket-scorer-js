@@ -36,13 +36,13 @@ class LandingPage extends Component {
 
     onOversChangedHandler = (event) => {
         this.setState({
-            overs: event.target.value
+            overs: parseInt(event.target.value)
         })
     }
 
     onWicketsChangedHandler = (event) => {
         this.setState({
-            wickets: event.target.value
+            wickets: parseInt(event.target.value)
         })
     }
 

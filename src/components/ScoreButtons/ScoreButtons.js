@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions'
-import { Button, ButtonGroup } from '@material-ui/core'
+import { Button, ButtonGroup, Typography } from '@material-ui/core'
 
 const ScoreButtons = (props) => {
     return (
         <div className='ScoreButtons' style={{margin: '30px auto'}}>
-            {(props.currentInnings === 1) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) ? <h3 onClick={() => props.onStartSecondInnings(props.score, props.totalBalls, props.totalWickets)}>INNINGS OVER! Click here to start new innings.</h3> : null}
-            {(props.currentInnings === 2) && (props.score >= props.target) ? <h3>MATCH OVER! TEAM 2 WINS BY {props.totalWickets - props.wickets} WICKETS! <a href='/'>CLICK HERE TO START NEW MATCH</a></h3> : null}
-            {(props.currentInnings === 2) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) && (props.score<props.target) ? <h3>MATCH OVER! TEAM 1 WINS BY {props.target - props.score - 1} RUNS! <a href='/'>CLICK HERE TO START NEW MATCH</a></h3> : null}
+            {(props.currentInnings === 1) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) ? <Typography variant='h5' color='primary'>INNINGS OVER! <span style={{textDecoration: 'underline', cursor: 'pointer'}} onClick={() => props.onStartSecondInnings(props.score, props.totalBalls, props.totalWickets)}>Click here to start new innings.</span></Typography> : null}
+            {(props.currentInnings === 2) && (props.score >= props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! TEAM 2 WINS BY {props.totalWickets - props.wickets} WICKETS!</Typography> : null}
+            {(props.currentInnings === 2) && ((props.balls === props.totalBalls) || (props.wickets === props.totalWickets)) && (props.score<props.target) ? <Typography variant='h5' color='primary'>MATCH OVER! TEAM 1 WINS BY {props.target - props.score - 1} RUNS!</Typography> : null}
+            <br />
             <ButtonGroup>
             <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(0)}>0</Button>
                 <Button style={{fontWeight: 'bold'}} variant='contained' color='primary' disabled={(props.balls === props.totalBalls) || (props.wickets === props.totalWickets) || (props.target && props.score >= props.target)} onClick={() => props.onRunsScored(1)}>1</Button>

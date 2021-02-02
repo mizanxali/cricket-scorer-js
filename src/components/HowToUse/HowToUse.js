@@ -77,17 +77,17 @@ export default function HowToUse() {
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            Enter the mentioned info on this page and click on START MATCH to start a new match with the entered details. You will be redirect to the homepage of the match.
+            Enter the starting info on this page and click on START MATCH to start a new match with the entered details. You will be redirect to the match page.
           </Typography>
           <Typography gutterBottom>
-            Enter outcome of each ball in the match by clicking on the appropriate buttons.
+            Enter outcome of each ball of the match by clicking on the appropriate buttons.
           </Typography>
           <Typography gutterBottom>
-            Click on SCORECARD to view the detailed batting and bowling scorecards, updated in real time after each ball.
+            Click on SCORECARD to view the detailed batting and bowling scorecards, updated in real time after every ball.
           </Typography>
           <br />
           <Alert severity='warning'>
-            Do not refresh the website during the match! Doing so will lead to losing your data.
+            Do not refresh the website during the match! Doing so will lead to loss of your data.
           </Alert>
         </DialogContent>
         <DialogActions>

@@ -74,7 +74,7 @@ class LandingPage extends Component {
               </form>
               <Link to='/match' style={{textDecoration: 'none'}}><Button onClick={() => this.props.onStartMatch({...this.state})} variant='contained' color='secondary'>START MATCH</Button></Link>
               <br />
-              <Typography color='primary' variant='subtitle2' style={{marginTop: '30px'}}>Developed by <a href='https://twitter.com/mizanxali' style={{textDecoration: 'none', color: 'inherit'}}>@mizanxali</a></Typography>
+              <Typography color='primary' variant='subtitle2' style={{marginTop: '30px'}}>Developed by <a target='_blank' rel="noreferrer" href='https://twitter.com/mizanxali' style={{textDecoration: 'none', color: 'inherit'}}>@mizanxali</a></Typography>
             </Container>
           )
     }

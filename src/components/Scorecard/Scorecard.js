@@ -8,7 +8,7 @@ class Scorecard extends Component {
     newBowlingTeam = []
 
     render() {
-        this.props.bowlingTeam.map((item) => {
+        this.props.bowlingTeam.forEach((item) => {
             let index = this.newBowlingTeam.findIndex((element) => (element.name === item.name))
             if(index === -1) {
                 this.newBowlingTeam.push({...item})
@@ -100,6 +100,9 @@ class Scorecard extends Component {
                                     <TableCell align='center' style={{color: '#808080'}}>{((bowler.runsConceded)/(bowler.ballsBowled/6)).toFixed(1)}</TableCell>
                                 </TableRow>
                             )
+                            else {
+                                return null
+                            }
                         })}
                     </TableBody>
                 </Table>

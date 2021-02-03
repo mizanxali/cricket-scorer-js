@@ -33,7 +33,7 @@ class ScoreButtons extends Component {
                     <Button style={{fontWeight: 'bold', marginTop: '3px'}} variant='contained' color='primary' disabled={(this.state.isNoBallChecked) || (this.props.balls === this.props.totalBalls) || (this.props.wickets === this.props.totalWickets) || (this.props.target && this.props.score >= this.props.target)} onClick={() => this.props.onWicketTaken()}>W</Button>
                 </ButtonGroup>
                 <br />
-                <FormControlLabel control={<Checkbox checked={this.state.isNoBallChecked} onChange={this.onNoBallCheckedHandler} name="noball" />} label="NO BALL" />
+                <FormControlLabel control={<Checkbox color='primary' checked={this.state.isNoBallChecked} onChange={this.onNoBallCheckedHandler} name="noball" />} label="NO BALL" />
             </div>
         )
     }
